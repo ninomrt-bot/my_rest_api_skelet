@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./backend_api
+    container_name: backend_api
+    ports: ["5000:5000"]
+    restart: unless-stopped
+    networks: [indus_net]
+
+  gateway:
+    build: ./opcua_gateway
+    container_name: opcua_gateway
+    depends_on: ["api"]
+    ports: ["4840:4840"]
+    restart: unless-stopped
+    networks: [indus_net]
+
+networks:
+  indus_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.30.30.0/24"
