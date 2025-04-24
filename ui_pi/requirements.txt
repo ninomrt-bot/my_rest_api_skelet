@@ -1,0 +1,4 @@
+pillow>=8.0
+requests>=2.0
+asyncua>=1.1.6
+python-dotenv
